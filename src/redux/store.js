@@ -42,11 +42,20 @@ const reducer = (state = initialState, action) => {
           }),
         },
       };
+    case "filters/search":
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          name: action.payload,
+        },
+      };
   }
   return state;
 };
 
 export const store = createStore(reducer);
+
 store.subscribe(() => {
   const { contacts } = store.getState();
   localStorage.setItem("contacts", JSON.stringify(contacts.items));
